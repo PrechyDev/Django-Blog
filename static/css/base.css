@@ -1,36 +1,32 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 18px;
 }
-a {
-    text-decoration: none;
-}
+
 header {
     border-bottom: 1px solid #999;
-    margin: 1rem 0;
+    margin-bottom: 2rem;
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
 header h1 a {
-    color: red;  
-    text-align: center;  
+    color: red;
+    text-decoration: none;
 }
 .nav-left {
     margin-right: auto;
 }
 .nav-right {
     display: flex;
-    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+header .nav-right a{
+    color: blue;
 }
 .post-entry {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
+    margin-bottom: 2rem;
 }
 .post-entry h2 {
     margin: 0.5rem 0;
@@ -38,9 +34,10 @@ header h1 a {
 .post-entry h2 a,
 .post-entry h2 a:visited {
     color: blue;
+    text-decoration: none;
 }
 .post-entry h2 a:hover {
-    color: red;
+    color: rgb(116, 12, 64);
 }
 .post-entry p {
     margin: 0;
