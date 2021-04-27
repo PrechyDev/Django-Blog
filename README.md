@@ -30,5 +30,9 @@ This project is a simple django blog creating using mainly ClassBasedViews
 
 -    A comment section, you must be logged in to comment
 
-### Check it out http://prechy-blog.herokuapp.com/
+### Database used
+SQLite
+
+### Deployment
+http://prechy-blog.herokuapp.com/
 
