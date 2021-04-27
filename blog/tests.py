@@ -2,9 +2,28 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
-from .models import Post
+from .models import Post, Comment
 
 # Test
+# class SignUpTests(TestCase):
+#     username='testuser',        
+#     email='test@gmail.com',
+#     password='secret'
+
+#     def test_signup_page_url(self):
+#         response = self.client.get(reverse('signup'))
+#         self.assertEqual(response.status_code, 200)
+#         self.assertTemplateUsed(response, 'registration/signup.html')
+
+#     def test_signup_form(self):
+#         self.user = get_user_model().objects.create_user(
+#             self.username, self.email, self.password
+#         )
+#         self.assertEqual(get_user_model().objects.all.count(), 1)
+#         self.assertEqual(get_user_model().objects.all.get_user_model()[0].username, self.username)
+#         self.assertEqual(get_user_model().objects.all.get_user_model()[0].email, self.email)
+
+
 class BlogTests(TestCase):
 
     def setUp(self):
@@ -19,6 +38,12 @@ class BlogTests(TestCase):
             body='Nice body content',
             author=self.user,
         )
+
+        self.comment = Comment.objects.create(
+            post=self.post,
+            comment='Nice comment',
+            author=self.user,
+        )
     
     def test_string_rep(self):
         post = Post(title='A sample title')
@@ -31,6 +56,10 @@ class BlogTests(TestCase):
         self.assertEqual(str(self.post.title), 'A good title')
         self.assertEqual(str(self.post.author), 'testuser')
         self.assertEqual(str(self.post.body), 'Nice body content')
+    
+    def test_comment_content(self):
+        self.assertEqual(str(self.comment.author), 'testuser')
+        self.assertEqual(str(self.comment.comment), 'Nice comment')
 
     def test_post_list_view(self):
         response = self.client.get(reverse('home'))

@@ -1,10 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <p class="font-weight-bold">Welcome {{ user.username }}!</p>
+    {% else %}
+        <div class="mt-1 mb-2">
+            <p class="m-0">You're not logged in</p>
+            <a href="{% url 'login' %}">Log In</a>  |  
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </div>
+    {% endif %}
     {% for post in object_list %}
-    <div class="post-entry">
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.body }}</p>
-    </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="font-weight-bold" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> &middot;
+                <span class="text-muted">by {{ post.author }}</span>
+            </div>
+            <div class="card-body">
+                {{ post.body }}
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'post_detail' post.pk %}">Comments: {{ post.comments.count }}</a>
+            </div>
+        </div>
+        <br>
     {% endfor %}
-{% endblock content %}
+{% endblock %}
